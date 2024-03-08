@@ -41,21 +41,21 @@ FROM (
                         )
                     ) / count(*) AS avg_change_size
                 FROM github_pull_requests
-                WHERE created_at >= '2022-07-01'
-                    AND created_at < '2023-01-01'
+                WHERE created_at >= '2023-07-01'
+                    AND created_at < '2024-01-01'
                     AND state = 'MERGED'
                     AND author_login != 'dependabot'
                     AND author_login != 'github-actions'
                     AND COALESCE(author_name, author_login) IN (
                         SELECT COALESCE(author_name, author_login)
                         FROM github_pull_requests
-                        WHERE created_at >= '2022-07-01'
-                            AND created_at < '2022-09-01'
+                        WHERE created_at >= '2023-07-01'
+                            AND created_at < '2024-01-01'
                     )
                     AND COALESCE(author_name, author_login) IN (
                         SELECT COALESCE(author_name, author_login)
                         FROM github_pull_requests
-                        WHERE created_at >= '2022-11-01'
+                        WHERE created_at >= '2023-07-01'
                     )
                 GROUP BY 1
             ) AS foo
